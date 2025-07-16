@@ -1,0 +1,42 @@
+    body {
+        background-color: lightgray;
+        font-family: sans-serif;
+        text-align: center;
+        padding: 50px;
+    }
+
+    /* 1. Cambia color de fondo si el ancho es menor a 600px */
+    /*
+    @media (max-width: 600px) {
+        body {
+            background-color: lightblue;
+        }
+    }
+    */
+
+    /* 2. Cambia color si el dispositivo está en modo horizontal */
+    /*
+    @media (orientation: landscape) {
+      body {
+        background-color: lightgreen;
+      }
+    }
+    */
+
+    /* 3. Solo si el dispositivo permite hover (ej. mouse) */
+    /*
+    @media (hover: hover) {
+      body {
+        background-color: gold;
+      }
+    }
+    */
+
+    /* 4. Detecta si hay puntero fino (como mouse) */
+    /*
+    @media (pointer: fine) {
+      body {
+        font-size: 22px;
+      }
+    }
+    */
