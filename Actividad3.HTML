@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Productos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .catalog {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: #666;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.3) 50%, transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .product-card:hover .product-image::before {
+            transform: translateX(100%);
+        }
+
+        .product-info {
+            padding: 25px;
+        }
+
+        .product-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .product-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .product-price {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            flex: 1;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(45deg, #764ba2, #667eea);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #667eea;
+            border: 2px solid #667eea;
+            flex: 1;
+        }
+
+        .btn-secondary:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #ff6b6b;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .product-badge.popular {
+            background: #4ecdc4;
+        }
+
+        .product-badge.new {
+            background: #45b7d1;
+        }
+
+        @media (max-width: 768px) {
+            .catalog {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .product-actions {
+                flex-direction: column;
+            }
+        }
+
+        /* Animaciones */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .product-card {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .product-card:nth-child(1) { animation-delay: 0.1s; }
+        .product-card:nth-child(2) { animation-delay: 0.2s; }
+        .product-card:nth-child(3) { animation-delay: 0.3s; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Catálogo de Productos</h1>
+            <p>Descubre nuestra selección exclusiva</p>
+        </div>
+
+        <div class="catalog">
+            <!-- Producto 1 -->
+            <div class="product-card">
+                <div class="product-badge popular">Popular</div>
+                <div class="product-image">
+                    📱
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Smartphone Premium</h3>
+                    <p class="product-description">
+                        El último modelo con tecnología avanzada, cámara de alta resolución y procesador ultrarrápido. Ideal para profesionales y entusiastas de la tecnología.
+                    </p>
+                    <div class="product-price">$899.99</div>
+                    <div class="product-actions">
+                        <button class="btn btn-primary" onclick="comprar('Smartphone Premium')">Comprar</button>
+                        <button class="btn btn-secondary" onclick="verDetalles('Smartphone Premium')">Detalles</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Producto 2 -->
+            <div class="product-card">
+                <div class="product-badge new">Nuevo</div>
+                <div class="product-image">
+                    💻
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Laptop Gaming</h3>
+                    <p class="product-description">
+                        Potente laptop diseñada para gaming y trabajo intensivo. Con tarjeta gráfica dedicada, 16GB RAM y SSD de alta velocidad para el máximo rendimiento.
+                    </p>
+                    <div class="product-price">$1,299.99</div>
+                    <div class="product-actions">
+                        <button class="btn btn-primary" onclick="comprar('Laptop Gaming')">Comprar</button>
+                        <button class="btn btn-secondary" onclick="verDetalles('Laptop Gaming')">Detalles</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Producto 3 -->
+            <div class="product-card">
+                <div class="product-badge">Oferta</div>
+                <div class="product-image">
+                    🎧
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Auriculares Inalámbricos</h3>
+                    <p class="product-description">
+                        Auriculares con cancelación de ruido activa, sonido de alta fidelidad y batería de larga duración. Perfectos para música, llamadas y trabajo.
+                    </p>
+                    <div class="product-price">$199.99</div>
+                    <div class="product-actions">
+                        <button class="btn btn-primary" onclick="comprar('Auriculares Inalámbricos')">Comprar</button>
+                        <button class="btn btn-secondary" onclick="verDetalles('Auriculares Inalámbricos')">Detalles</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function comprar(producto) {
+            alert(`¡Gracias por tu interés en ${producto}!\n\nSerás redirigido al proceso de compra.`);
+            // Aquí podrías agregar la lógica para redirigir a la página de compra
+            console.log(`Comprando: ${producto}`);
+        }
+
+        function verDetalles(producto) {
+            const detalles = {
+                'Smartphone Premium': {
+                    specs: '6.7" OLED, 128GB, 8GB RAM, Cámara 108MP',
+                    caracteristicas: 'Resistente al agua, Carga rápida, 5G'
+                },
+                'Laptop Gaming': {
+                    specs: '15.6" FHD, Intel i7, RTX 3060, 16GB RAM, 1TB SSD',
+                    caracteristicas: 'Teclado RGB, Refrigeración avanzada, WiFi 6'
+                },
+                'Auriculares Inalámbricos': {
+                    specs: 'Bluetooth 5.0, Batería 30h, Cancelación de ruido',
+                    caracteristicas: 'Controles táctiles, Micrófono integrado, Estuche de carga'
+                }
+            };
+
+            const info = detalles[producto];
+            alert(`${producto}\n\nEspecificaciones:\n${info.specs}\n\nCaracterísticas:\n${info.caracteristicas}`);
+        }
+
+        // Efecto de parallax suave en el scroll
+        window.addEventListener('scroll', () => {
+            const cards = document.querySelectorAll('.product-card');
+            cards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                const speed = 0.5;
+                const yPos = -(rect.top * speed);
+                card.style.transform = `translateY(${yPos}px)`;
+            });
+        });
+    </script>
+</body>
+</html>
